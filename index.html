@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Kragba Henriette</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family: Arial, sans-serif;
+      background:#0f172a;
+      color:white;
+      line-height:1.6;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:linear-gradient(135deg,#ff4d6d,#7b2cbf,#2563eb);
+      box-shadow:0 4px 20px rgba(0,0,0,0.25);
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:20px;
+      padding:18px 0;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:bold;
+      color:#fff;
+    }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    nav ul li a{
+      color:#fff;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:#ffe082;
+    }
+
+    .hero{
+      padding:70px 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,77,109,0.22), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(123,44,191,0.20), transparent 30%);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      align-items:center;
+      gap:40px;
+    }
+
+    .hero-text h1{
+      font-size:54px;
+      line-height:1.1;
+      margin-bottom:18px;
+    }
+
+    .hero-text h1 span{
+      color:#ffd166;
+    }
+
+    .hero-text p{
+      color:#e5e7eb;
+      font-size:18px;
+      margin-bottom:14px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
+      margin-top:25px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 22px;
+      border-radius:30px;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .btn-primary{
+      background:#ff4d6d;
+      color:#fff;
+    }
+
+    .btn-secondary{
+      border:2px solid #fff;
+      color:#fff;
+      background:transparent;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      opacity:0.92;
+    }
+
+    .hero-image{
+      text-align:center;
+    }
+
+    .hero-image img{
+      width:320px;
+      max-width:100%;
+      border-radius:24px;
+      border:4px solid rgba(255,255,255,0.15);
+      box-shadow:0 16px 40px rgba(0,0,0,0.35);
+    }
+
+    section{
+      padding:70px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:34px;
+      margin-bottom:12px;
+      color:#ff8fab;
+    }
+
+    .section-subtitle{
+      text-align:center;
+      max-width:850px;
+      margin:0 auto 40px;
+      color:#cbd5e1;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:0.9fr 1.1fr;
+      gap:30px;
+      align-items:center;
+    }
+
+    .about-grid img{
+      width:100%;
+      max-width:420px;
+      border-radius:20px;
+      box-shadow:0 14px 35px rgba(0,0,0,0.3);
+    }
+
+    .card-box{
+      background:#1e293b;
+      padding:28px;
+      border-radius:18px;
+      box-shadow:0 12px 30px rgba(0,0,0,0.20);
+    }
+
+    .card-box h3{
+      color:#ffd166;
+      margin-bottom:12px;
+      font-size:26px;
+    }
+
+    .skills-grid,
+    .exp-grid,
+    .portfolio-grid,
+    .proof-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:22px;
+    }
+
+    .skill-card,
+    .exp-card,
+    .portfolio-card,
+    .proof-card{
+      background:#1e293b;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 12px 30px rgba(0,0,0,0.20);
+      transition:0.3s;
+    }
+
+    .skill-card:hover,
+    .exp-card:hover,
+    .portfolio-card:hover,
+    .proof-card:hover{
+      transform:translateY(-6px);
+    }
+
+    .skill-card,
+    .exp-card{
+      padding:24px;
+    }
+
+    .skill-card h4,
+    .exp-card h4,
+    .portfolio-card h4,
+    .proof-card h4{
+      color:#ffd166;
+      margin-bottom:10px;
+      font-size:22px;
+    }
+
+    .skill-card p,
+    .exp-card p,
+    .portfolio-card p,
+    .proof-card p{
+      color:#e5e7eb;
+      font-size:15px;
+    }
+
+    .portfolio-card img,
+    .proof-card img{
+      width:100%;
+      height:280px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .portfolio-card .content,
+    .proof-card .content{
+      padding:18px;
+    }
+
+    .contact-box{
+      background:linear-gradient(135deg,#1e293b,#172033);
+      padding:35px;
+      border-radius:20px;
+      text-align:center;
+      box-shadow:0 14px 35px rgba(0,0,0,0.25);
+    }
+
+    .contact-box h3{
+      font-size:30px;
+      margin-bottom:12px;
+      color:#ff8fab;
+    }
+
+    .contact-box p{
+      margin-bottom:10px;
+      color:#e5e7eb;
+    }
+
+    .contact-links{
+      margin-top:20px;
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .contact-links a{
+      padding:13px 22px;
+      border-radius:28px;
+      font-weight:bold;
+      background:#ff4d6d;
+      color:#fff;
+      transition:0.3s;
+    }
+
+    .contact-links a.secondary{
+      background:#334155;
+    }
+
+    .contact-links a:hover{
+      transform:translateY(-2px);
+      opacity:0.92;
+    }
+
+    footer{
+      text-align:center;
+      padding:24px;
+      background:#020617;
+      color:#cbd5e1;
+    }
+
+    @media (max-width:900px){
+      .hero-grid,
+      .about-grid{
+        grid-template-columns:1fr;
+        text-align:center;
+      }
+
+      .hero-text h1{
+        font-size:38px;
+      }
+
+      .hero-buttons{
+        justify-content:center;
+      }
+
+      .about-grid img{
+        margin:auto;
+      }
+    }
+
+    @media (max-width:600px){
+      .hero-text h1{
+        font-size:30px;
+      }
+
+      .section-title{
+        font-size:28px;
+      }
+
+      .portfolio-card img,
+      .proof-card img{
+        height:220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Henriette Portfolio</div>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#competences">Compétences</a></li>
+          <li><a href="#experience">Expérience</a></li>
+          <li><a href="#valeur">Valeur</a></li>
+          <li><a href="#realisations">Réalisations</a></li>
+          <li><a href="#preuves">Preuves</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="accueil">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <h1>Kragba <span>Henriette</span></h1>
+        <p>Chargée de communication digitale, community manager et créatrice de contenus visuels.</p>
+        <p>Je conçois des visuels percutants, j’anime des communautés et j’aide les marques à gagner en visibilité avec une communication digitale claire, moderne et professionnelle.</p>
+        <div class="hero-buttons">
+          <a href="#realisations" class="btn btn-primary">Voir mes réalisations</a>
+          <a href="#contact" class="btn btn-secondary">Me contacter</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="images/ma-photo.jpg" alt="Photo de Henriette">
+      </div>
+    </div>
+  </section>
+
+  <section id="apropos">
+    <div class="container">
+      <h2 class="section-title">À propos de moi</h2>
+      <p class="section-subtitle">
+        Mon profil allie communication digitale, relation client, création visuelle et gestion de présence en ligne.
+      </p>
+
+      <div class="about-grid">
+        <img src="images/au-travail.jpg" alt="Henriette au travail">
+
+        <div class="card-box">
+          <h3>Une communicante orientée résultats</h3>
+          <p>Je suis spécialisée dans la création de contenus visuels, l’animation de réseaux sociaux et la mise en place d’actions digitales qui valorisent les marques.</p>
+          <p>Mon objectif est simple : transformer une présence digitale ordinaire en image professionnelle, attractive et crédible.</p>
+          <p>J’aime créer, structurer et communiquer avec impact pour que chaque marque se démarque.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="competences">
+    <div class="container">
+      <h2 class="section-title">Mes compétences</h2>
+      <p class="section-subtitle">
+        Les domaines dans lesquels je peux accompagner une entreprise ou une marque.
+      </p>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4>Community Management</h4>
+          <p>Gestion et animation des réseaux sociaux, calendrier éditorial et engagement de communauté.</p>
+        </div>
+
+        <div class="skill-card">
+          <h4>Création visuelle</h4>
+          <p>Conception d’affiches, flyers, visuels marketing et contenus attractifs pour le digital.</p>
+        </div>
+
+        <div class="skill-card">
+          <h4>Communication digitale</h4>
+          <p>Mise en œuvre de stratégies de communication pour améliorer la visibilité d’une marque.</p>
+        </div>
+
+        <div class="skill-card">
+          <h4>Analyse & optimisation</h4>
+          <p>Suivi des performances, analyse des résultats et amélioration des publications digitales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-title">Mon expérience</h2>
+      <p class="section-subtitle">
+        Un parcours construit autour du digital, de la communication et de la relation client.
+      </p>
+
+      <div class="exp-grid">
+        <div class="exp-card">
+          <h4>Community Manager</h4>
+          <p>Chez Crystal de Roches, j’ai participé à la gestion des réseaux sociaux, à la création de contenus visuels, à la stratégie de communication digitale et au suivi des performances.</p>
+        </div>
+
+        <div class="exp-card">
+          <h4>Sous-gérante</h4>
+          <p>Mon expérience en gestion d’activité m’a permis de développer l’organisation, le suivi client, la coordination d’équipe et le sens du résultat.</p>
+        </div>
+
+        <div class="exp-card">
+          <h4>Social Media Manager - Stage</h4>
+          <p>J’ai contribué à des campagnes digitales, à la gestion de comptes sociaux et à l’analyse des performances de communication.</p>
+        </div>
+
+        <div class="exp-card">
+          <h4>Formation digitale</h4>
+          <p>Avec SheIsTheCode et mes certifications, j’ai renforcé mes compétences en marketing digital, création de contenu, outils web et communication en ligne.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="valeur">
+    <div class="container">
+      <h2 class="section-title">Ce que j’apporte</h2>
+      <p class="section-subtitle">
+        J’aide les marques à se démarquer avec une communication digitale efficace et moderne.
+      </p>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4>Création de contenus</h4>
+          <p>Visuels attractifs, flyers, publications réseaux sociaux.</p>
+        </div>
+
+        <div class="skill-card">
+          <h4>Gestion des réseaux</h4>
+          <p>Animation de communauté et gestion de pages professionnelles.</p>
+        </div>
+
+        <div class="skill-card">
+          <h4>Stratégie digitale</h4>
+          <p>Planification de contenus et amélioration de la visibilité.</p>
+        </div>
+
+        <div class="skill-card">
+          <h4>Image de marque</h4>
+          <p>Création d’une identité visuelle cohérente et professionnelle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="realisations">
+    <div class="container">
+      <h2 class="section-title">Mes réalisations</h2>
+      <p class="section-subtitle">
+        Une sélection de projets visuels réalisés pour des marques et des besoins de communication concrets.
+      </p>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <img src="images/kelara-beauty.jpg" alt="Kelara Beauty">
+          <div class="content">
+            <h4>Kelara Beauty House</h4>
+            <p>Visuel publicitaire beauté conçu pour valoriser les prestations et donner une image élégante et professionnelle.</p>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="images/crystal-affiche.jpg" alt="Crystal affiche">
+          <div class="content">
+            <h4>Crystal de Roches - Affiche</h4>
+            <p>Affiche promotionnelle pensée pour présenter des offres de voyage avec un rendu premium et accrocheur.</p>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="images/crystal-logo.jpg" alt="Crystal logo">
+          <div class="content">
+            <h4>Crystal de Roches - Logo</h4>
+            <p>Travail d’identité visuelle visant à renforcer la crédibilité et la présence de la marque.</p>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="images/design-hbd.jpg" alt="Design Happy Birthday">
+          <div class="content">
+            <h4>Design Happy Birthday</h4>
+            <p>Création visuelle élégante pour communication événementielle et publication sur les réseaux sociaux.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="preuves">
+    <div class="container">
+      <h2 class="section-title">Preuves & présence digitale</h2>
+      <p class="section-subtitle">
+        Mon portfolio montre aussi ma capacité à construire une présence en ligne réelle et cohérente.
+      </p>
+
+      <div class="proof-grid">
+        <div class="proof-card">
+          <img src="images/hk-tiktok.jpg" alt="Compte HK TikTok">
+          <div class="content">
+            <h4>HK Digital sur TikTok</h4>
+            <p>Capture réelle montrant un compte en activité, des contenus publiés et des performances visibles.</p>
+          </div>
+        </div>
+
+        <div class="proof-card">
+          <img src="images/au-travail.jpg" alt="Henriette au travail">
+          <div class="content">
+            <h4>Moi en situation de travail</h4>
+            <p>Une image professionnelle qui renforce la crédibilité de mon profil et mon univers digital.</p>
+          </div>
+        </div>
+
+        <div class="proof-card">
+          <img src="images/ma-photo.jpg" alt="Portrait Henriette">
+          <div class="content">
+            <h4>Image professionnelle</h4>
+            <p>Un portrait propre et soigné pour donner confiance et humaniser ma présence en ligne.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-subtitle">
+        Disponible pour des missions de community management, création visuelle et communication digitale.
+      </p>
+
+      <div class="contact-box">
+        <h3>Travaillons ensemble</h3>
+        <p>📍 Abidjan, Cocody</p>
+        <p>📞 +225 0778019011</p>
+        <p>📧 henriettekragba27@gmail.com</p>
+
+        <div class="contact-links">
+          <a href="https://wa.me/2250778019011" target="_blank">WhatsApp</a>
+          <a href="mailto:henriettekragba27@gmail.com" class="secondary">Email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 - Portfolio de Kragba Henriette
+  </footer>
+
+</body>
+</html>
